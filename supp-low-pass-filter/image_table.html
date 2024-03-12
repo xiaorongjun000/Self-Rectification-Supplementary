@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Low-pass filter</title>
+<style>
+  td {
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<table border="1" style="table-layout: fixed;">
+  <tr>
+    <th colspan="1"></th>
+    <th colspan="2"></th>
+    <th colspan="2">w/o KV-inj in inversion</th>
+    <th colspan="4">with KV-inj in inversion</th>
+  </tr>
+  <tr>
+    <th colspan="1"></th>
+    <th colspan="2"></th>
+    <th colspan="2">P1=0, P2=0</th>
+    <th colspan="2">P1=20, P2=0</th>
+    <th colspan="2">P1=20, P2=10</th>
+  </tr>
+  <tr>
+    <th style="width: 512px;"></th>
+    <th style="width: 512px;">Source</th>
+    <th style="width: 512px;">Target</th>
+    <th style="width: 512px;">I_coarse</th>
+    <th style="width: 512px;">Final Result</th>
+    <th style="width: 512px;">I_coarse</th>
+    <th style="width: 512px;">Final Result</th>
+    <th style="width: 512px;">I_coarse</th>
+    <th style="width: 512px;">Final Result</th>
+  </tr>
+  <tr>
+    <th>no blur</th>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/ref.jpg">
+          <img src="./images/ref.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/no_blur/target.jpg">
+          <img src="./images/no_blur/target.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/no_blur/1-1.jpg">
+          <img src="./images/no_blur/1-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/no_blur/1-2.jpg">
+          <img src="./images/no_blur/1-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/no_blur/2-1.jpg">
+          <img src="./images/no_blur/2-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/no_blur/2-2.jpg">
+          <img src="./images/no_blur/2-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/no_blur/3-1.jpg">
+          <img src="./images/no_blur/3-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/no_blur/3-2.jpg">
+          <img src="./images/no_blur/3-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Gaussian blur KernelSize 3</th>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/ref.jpg">
+          <img src="./images/ref.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_3/target.jpg">
+          <img src="./images/Kernel_3/target.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_3/1-1.jpg">
+          <img src="./images/Kernel_3/1-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_3/1-2.jpg">
+          <img src="./images/Kernel_3/1-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_3/2-1.jpg">
+          <img src="./images/Kernel_3/2-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_3/2-2.jpg">
+          <img src="./images/Kernel_3/2-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_3/3-1.jpg">
+          <img src="./images/Kernel_3/3-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_3/3-2.jpg">
+          <img src="./images/Kernel_3/3-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+  </tr>
+    
+  <tr>
+    <th>Gaussian blur KernelSize 5</th>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/ref.jpg">
+          <img src="./images/ref.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_5/target.jpg">
+          <img src="./images/Kernel_5/target.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_5/1-1.jpg">
+          <img src="./images/Kernel_5/1-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_5/1-2.jpg">
+          <img src="./images/Kernel_5/1-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_5/2-1.jpg">
+          <img src="./images/Kernel_5/2-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_5/2-2.jpg">
+          <img src="./images/Kernel_5/2-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_5/3-1.jpg">
+          <img src="./images/Kernel_5/3-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_5/3-2.jpg">
+          <img src="./images/Kernel_5/3-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Gaussian blur KernelSize 11</th>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/ref.jpg">
+          <img src="./images/ref.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_11/target.jpg">
+          <img src="./images/Kernel_11/target.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_11/1-1.jpg">
+          <img src="./images/Kernel_11/1-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_11/1-2.jpg">
+          <img src="./images/Kernel_11/1-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_11/2-1.jpg">
+          <img src="./images/Kernel_11/2-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_11/2-2.jpg">
+          <img src="./images/Kernel_11/2-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_11/3-1.jpg">
+          <img src="./images/Kernel_11/3-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_11/3-2.jpg">
+          <img src="./images/Kernel_11/3-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Gaussian blur KernelSize 21</th>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/ref.jpg">
+          <img src="./images/ref.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_21/target.jpg">
+          <img src="./images/Kernel_21/target.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_21/1-1.jpg">
+          <img src="./images/Kernel_21/1-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_21/1-2.jpg">
+          <img src="./images/Kernel_21/1-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_21/2-1.jpg">
+          <img src="./images/Kernel_21/2-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_21/2-2.jpg">
+          <img src="./images/Kernel_21/2-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_21/3-1.jpg">
+          <img src="./images/Kernel_21/3-1.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+    <td halign="center" style="word-wrap: break-word;" valign="top">
+      <p>
+        <a href="./images/Kernel_21/3-2.jpg">
+          <img src="./images/Kernel_21/3-2.jpg" style="width:256px">
+        </a>
+      </p>
+    </td>
+  </tr>
+
+
+</body>
+</html>
